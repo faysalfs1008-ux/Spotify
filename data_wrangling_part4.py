@@ -21,3 +21,26 @@ print(df['tempo'].describe())
 
 df = df[(df['tempo'] > 30) & (df['tempo'] < 220)]
 print("After cleaning:", df.shape)
+#----------------------------------
+# Outlier Detection (IQR Method)
+#------------------------------------
+def find_outliers(df, col):
+    # using IQR to find outliers
+    Q1 = df[col].quantile(0.25)
+    Q3 = df[col].quantile(0.75)
+    IQR = Q3 - Q1
+
+    lower = Q1 - 1.5 * IQR
+    upper = Q3 + 1.5 * IQR
+
+    outliers = df[(df[col] < lower) | (df[col] > upper)]
+
+    print("Outliers in", col, ":", len(outliers))
+    print(outliers[col].head())  
+
+    return outliers
+
+
+outliers_energy = find_outliers(df, "energy")
+outliers_tempo = find_outliers(df, "tempo")
+outliers_danceability = find_outliers(df, "danceability")
