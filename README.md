@@ -3,6 +3,8 @@
 This repository contains a Python script (`full_artist_analysis.py`) for exploring and analyzing Spotify artist data. The script performs statistical analyses, identifies trends, and generates visualizations.
 
 ---
+## Contributors 
+- Marta Parada de Mingo
 
 ## Dataset
 
