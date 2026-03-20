@@ -1,4 +1,4 @@
-# Spotify Artist Analysis
+# Spotify Data Analysis & Dashboard
 
 This repository contains a Python script (`full_artist_analysis.py`) for exploring and analyzing Spotify artist data. The script performs statistical analyses, identifies trends, and generates visualizations.
 
@@ -8,7 +8,7 @@ This repository contains a Python script (`full_artist_analysis.py`) for explori
 
 ## Dataset
 
-The script uses:
+The script uses the following datasets:
 
 - `artist_data.csv` – contains artist statistics, including:
   - `name` – artist name  
