@@ -1,3 +1,7 @@
+#------------------------------------
+# Part 4: Data Wrangling
+# Task 1: Detect Outliers
+#------------------------------------
 import sqlite3
 import pandas as pd
 
