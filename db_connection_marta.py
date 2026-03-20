@@ -1,0 +1,13 @@
+import sqlite3
+
+conn = sqlite3.connect("spotify_database.db")
+
+cursor = conn.cursor()
+cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+
+
+tables = cursor.fetchall()
+print("Tables in database:")
+print(tables)
+
+conn.close()
