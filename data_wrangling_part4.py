@@ -131,3 +131,28 @@ plt.xlabel('Era')
 plt.ylabel('Average Danceability')
 plt.title('Danceability over eras')
 plt.show()
+
+#---------------------------------
+# Task 7 popularity analysis
+#----------------------------------
+
+df['month'] = df['release_date'].dt.month
+
+monthly_data = df.groupby('month')[['artist_popularity', 'followers']].mean().reset_index()
+
+print("Monthly average artist popularity and followers:")
+print(monthly_data.head())
+
+# popularity
+plt.bar(monthly_data['month'], monthly_data['artist_popularity'])
+plt.xlabel("Month")
+plt.ylabel("Average Artist Popularity")
+plt.title("Artist Popularity by Month")
+plt.show()
+
+# followers
+plt.bar(monthly_data['month'], monthly_data['followers'])
+plt.xlabel("Month")
+plt.ylabel("Average Followers")
+plt.title("Followers by Month")
+plt.show()
