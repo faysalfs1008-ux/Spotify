@@ -65,3 +65,12 @@ df = df.dropna(axis=1, how='all')
 
 print("After removing invalid records:", df.shape)
 
+#-----------------------------------------
+# Task 3: Prepare data for time analysis
+#-----------------------------------------
+df['release_date'] = pd.to_datetime(df['release_date'], errors='coerce')
+df['year'] = df['release_date'].dt.year
+
+df = df.dropna(subset=['year'])
+
+print("Data prepared for time analysis:", df[['release_date', 'year']].head())
