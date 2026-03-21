@@ -185,3 +185,30 @@ sorted_pairs = sorted(pair_counts.items(), key=lambda x: x[1], reverse=True)
 
 print("Most common genre combinations:")
 print(sorted_pairs[:10]) 
+
+# Task 9: label feature levels
+
+# energy labells
+def label_energy(x):
+    if x < 0.2:
+        return "very low"
+    elif x < 0.4:
+        return "low"
+    elif x < 0.6:
+        return "medium"
+    elif x < 0.8:
+        return "high"
+    else:
+        return "very high"
+
+df['energy_level'] = df['energy'].apply(label_energy)
+print(df[['energy','energy_level']].head())
+
+low_energy = df[df['energy_level'] == "very low"]
+high_energy = df[df['energy_level'] == "very high"]
+
+print("low energy genres:")
+print(low_energy['genre_0'].value_counts().head())
+
+print("high energy genres:")
+print(high_energy['genre_0'].value_counts().head())
