@@ -97,7 +97,7 @@ def album_feature_summary(df, album_name):
     print(summary)
 
 #---------------------------
-# Task 5: Check artistsdata 
+# Task 5: Check artist data 
 #---------------------------
 
 df['artist_name_lower'] = df['name'].str.lower()
@@ -106,3 +106,28 @@ duplicate_artists = artist_counts[artist_counts > 1]
 
 print("Artists with multiple IDs:")
 print(duplicate_artists.head())
+
+#--------------------------------
+# Task 6: Group features by era
+#---------------------------------
+
+import matplotlib.pyplot as plt
+df['era'] = (df['year'] // 10) * 10
+era_features = df.groupby('era')[['energy', 'danceability', 'tempo']].mean().reset_index()
+
+print("Average features by era:")
+print(era_features.head())
+
+# energy
+plt.bar(era_features['era'], era_features['energy'])
+plt.xlabel('Era')
+plt.ylabel('Average Energy')
+plt.title('Energy over eras')
+plt.show()
+
+# danceability
+plt.bar(era_features['era'], era_features['danceability'])
+plt.xlabel('Era')
+plt.ylabel('Average Danceability')
+plt.title('Danceability over eras')
+plt.show()
