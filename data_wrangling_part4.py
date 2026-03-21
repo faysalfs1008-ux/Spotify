@@ -74,3 +74,8 @@ df['year'] = df['release_date'].dt.year
 df = df.dropna(subset=['year'])
 
 print("Data prepared for time analysis:", df[['release_date', 'year']].head())
+# Analysis
+features_over_time = df.groupby('year')[['energy', 'danceability', 'tempo']].mean().reset_index()
+
+print("Average features over time:")
+print(features_over_time.head())
