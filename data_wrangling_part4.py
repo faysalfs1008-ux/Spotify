@@ -44,3 +44,24 @@ def find_outliers(df, col):
 outliers_energy = find_outliers(df, "energy")
 outliers_tempo = find_outliers(df, "tempo")
 outliers_danceability = find_outliers(df, "danceability")
+
+#-----------------------------------
+# Task 2: Check for invalid records
+#------------------------------------
+print("Missing track IDs:", df['id'].isnull().sum())
+print("Missing artist IDs:", df['artist_id'].isnull().sum())
+
+if 'duration_ms' in df.columns:
+    print("Negative duration values:", (df['duration_ms'] < 0).sum())
+print("Duplicate rows:", df.duplicated().sum())
+
+df = df.dropna(subset=['id', 'artist_id'])
+if 'duration_ms' in df.columns:
+    df = df[df['duration_ms'] >= 0]
+
+df = df.drop_duplicates()
+
+df = df.dropna(axis=1, how='all')
+
+print("After removing invalid records:", df.shape)
+
