@@ -79,3 +79,19 @@ features_over_time = df.groupby('year')[['energy', 'danceability', 'tempo']].mea
 
 print("Average features over time:")
 print(features_over_time.head())
+
+#-------------------------_--------
+# Task 4: Album feature summary
+#----------------------------------
+def album_feature_summary(df, album_name):
+    album_df = df[df['album_name'] == album_name]
+
+    if album_df.empty:
+        print("Album not found")
+        return
+
+    features = ['energy', 'danceability', 'tempo']
+    summary = album_df[features].mean()
+
+    print(f"Feature summary for album: {album_name}")
+    print(summary)
