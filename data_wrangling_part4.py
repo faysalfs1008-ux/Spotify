@@ -95,3 +95,14 @@ def album_feature_summary(df, album_name):
 
     print(f"Feature summary for album: {album_name}")
     print(summary)
+
+#---------------------------
+# Task 5: Check artistsdata 
+#---------------------------
+
+df['artist_name_lower'] = df['name'].str.lower()
+artist_counts = df.groupby('artist_name_lower')['artist_id'].nunique()
+duplicate_artists = artist_counts[artist_counts > 1]
+
+print("Artists with multiple IDs:")
+print(duplicate_artists.head())
