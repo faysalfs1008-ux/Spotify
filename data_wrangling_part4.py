@@ -156,3 +156,32 @@ plt.xlabel("Month")
 plt.ylabel("Average Followers")
 plt.title("Followers by Month")
 plt.show()
+
+
+#------------------------------------------
+# Task 8: Genre combinations
+#------------------------------------------
+df['genres_list'] = df[['genre_0', 'genre_1', 'genre_2', 'genre_3', 'genre_4']].values.tolist()
+cleaned = []
+for row in df['genres_list']:
+    temp = []
+    for g in row:
+        if pd.notnull(g) and g != '':
+            temp.append(g)
+    cleaned.append(temp)
+
+df['genres_list'] = cleaned
+
+ # count combination
+pair_counts = {}
+for genres in df['genres_list']:
+    if len(genres) > 1:
+        for i in range(len(genres)):
+            for j in range(i + 1, len(genres)):
+                pair = (genres[i], genres[j])
+                pair_counts[pair] = pair_counts.get(pair, 0) + 1
+
+sorted_pairs = sorted(pair_counts.items(), key=lambda x: x[1], reverse=True)
+
+print("Most common genre combinations:")
+print(sorted_pairs[:10]) 
