@@ -98,8 +98,8 @@ Additional CSV files are generated from analysis and used in the Insights page.
 ## Group Members
 
 - Marta Parada de Mingo – Dashboard development (Part 5)
-- [Teammate 2] – Data analysis (Part 3)
-- [Teammate 3] – Data wrangling (Part 4)
+- Faysal Asrih Alami – Data analysis (Part 3)
+- Imran Naciri – Data wrangling (Part 4)
 
 ---
 ## Requirements
