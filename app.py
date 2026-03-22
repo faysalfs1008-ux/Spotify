@@ -161,7 +161,7 @@ elif page == "Insights":
     album_artist_df = load_album_artist_popularity()
     danceability_df = load_top_danceability_artists()
 
-    # Explicit vs Non-explicit
+    # Explicit vs Non-Explicit
     st.subheader("Explicit vs Non-Explcit Tracks")
 
     fig, ax = plt.subplots()
@@ -169,9 +169,12 @@ elif page == "Insights":
     ax.set_xlabel("Track Type")
     ax.set_ylabel("Average Popularity")
     ax.set_title("Average Popularity of Explicit vs Non-Explicit Tracks")
+    plt.tight_layout()
     st.pyplot(fig)
 
-    # Collaborration vs Solo
+    st.write("Explicit tracks appear to have a higher average popularity than non-explicit tracks.")
+
+    # Collaboration vs Solo
     st.subheader("Collaborration vs Solo Tracks")
 
     fig, ax = plt.subplots()
@@ -179,7 +182,10 @@ elif page == "Insights":
     ax.set_xlabel("Track Type")
     ax.set_ylabel("Average Popularity")
     ax.set_title("Average Popularity of Collaboration vs Solo Tracks")
+    plt.tight_layout()
     st.pyplot(fig)
+
+    st.write("Collaborative tracks appear to perform better on average than solo tracks in this dataset.")
 
     # Album vs Artist popularity
     st.subheader("Album vs Artist Popularity")
@@ -196,6 +202,8 @@ elif page == "Insights":
     plt.tight_layout()
     st.pyplot(fig)
 
+    st.write("This scatter plot suggests a positive relationship between artist popularity and album popularity.")
+
     # Top danceability artists
     st.subheader("Top Danceability Artists")
 
@@ -204,7 +212,10 @@ elif page == "Insights":
     ax.set_xlabel("Number of Top Tracks")
     ax.set_ylabel("Artist")
     ax.set_title("Artist Appearing Most in Top 10% Danceability Tracks")
+    plt.tight_layout()
     st.pyplot(fig)
+
+    st.write("These artists appear most often among the top 10% most danceable tracks.")
 
     # Feature over time
     st.subheader("Feature Trends Over Time")
@@ -224,3 +235,5 @@ elif page == "Insights":
     ax.grid(alpha=0.3)
     plt.tight_layout()
     st.pyplot(fig)
+
+    st.write(f"This chart shows how average {selected_feature} changes over time in the selected year range.")
