@@ -3,6 +3,15 @@
 This project analyzes Spotify data and presents insights through an interactive dashboard built using Streamlit. The dashboard allows users to explore artist statistics, track features, genre trends, and data-driven insights.
 
 ---
+
+## Project Objectives
+
+- Analyze Spotify track and artist data
+- Investigate relationships between features such as danceability and popularity
+- Explore trends over time and across genres
+- Build an interactive dashboard to present findings
+
+---
 ## Contributors 
 - Marta Parada de Mingo
 
