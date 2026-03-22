@@ -42,6 +42,16 @@ The dashboard includes the following pages:
   - Feature comparison by era
   
 ---
+
+## Project Structure
+
+- `app.py` – Streamlit dashboard application
+- `data_loader.py` – Data loading and processing functions
+- `spotify_database.db` – SQLite database
+- `.csv files` – Precomputed analysis results (Part 3)
+- `data_wrangling_part4.py` – Data cleaning and preparation
+
+---
 ## Contributors 
 - Marta Parada de Mingo
 
