@@ -52,6 +52,16 @@ The dashboard includes the following pages:
 - `data_wrangling_part4.py` – Data cleaning and preparation
 
 ---
+
+## How to Run
+
+1. Install required packages:
+   pip install streamlit pandas matplotlib seaborn sqlite3
+
+2. Run the dashboard:
+   streamlit run app.py
+
+---
 ## Contributors 
 - Marta Parada de Mingo
 
