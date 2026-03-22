@@ -45,6 +45,19 @@ outliers_energy = find_outliers(df, "energy")
 outliers_tempo = find_outliers(df, "tempo")
 outliers_danceability = find_outliers(df, "danceability")
 
+df = df[
+    (df['energy'].between(df['energy'].quantile(0.25) - 1.5*(df['energy'].quantile(0.75) - df['energy'].quantile(0.25)),
+                          df['energy'].quantile(0.75) + 1.5*(df['energy'].quantile(0.75) - df['energy'].quantile(0.25))))
+    &
+    (df['tempo'].between(df['tempo'].quantile(0.25) - 1.5*(df['tempo'].quantile(0.75) - df['tempo'].quantile(0.25)),
+                         df['tempo'].quantile(0.75) + 1.5*(df['tempo'].quantile(0.75) - df['tempo'].quantile(0.25))))
+    &
+    (df['danceability'].between(df['danceability'].quantile(0.25) - 1.5*(df['danceability'].quantile(0.75) - df['danceability'].quantile(0.25)),
+                                df['danceability'].quantile(0.75) + 1.5*(df['danceability'].quantile(0.75) - df['danceability'].quantile(0.25))))
+]
+
+print("After removing outliers:", df.shape)
+
 #-----------------------------------
 # Task 2: Check for invalid records
 #------------------------------------
@@ -80,6 +93,11 @@ features_over_time = df.groupby('year')[['energy', 'danceability', 'tempo']].mea
 print("Average features over time:")
 print(features_over_time.head())
 
+date_features = df.groupby('release_date')[['energy', 'danceability', 'tempo']].mean().reset_index()
+
+print("Average features by release date:")
+print(date_features.head())
+
 #-------------------------_--------
 # Task 4: Album feature summary
 #----------------------------------
@@ -95,6 +113,8 @@ def album_feature_summary(df, album_name):
 
     print(f"Feature summary for album: {album_name}")
     print(summary)
+
+album_feature_summary(df, df['album_name'].iloc[0])
 
 #---------------------------
 # Task 5: Check artist data 
