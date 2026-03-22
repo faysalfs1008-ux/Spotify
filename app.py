@@ -86,6 +86,7 @@ if page == "Home":
 elif page == "Feature Analysis":
     st.title("Feature Analysis")
     st.write(f"Distribution of **{selected_feature}** for the selected year range.")
+    st.metric(f"Average {selected_feature}", round(filtered_features[selected_feature].mean(), 3))
 
     fig, ax = plt.subplots()
     ax.hist(filtered_features[selected_feature], bins=10)
@@ -162,61 +163,77 @@ elif page == "Insights":
     album_artist_df = load_album_artist_popularity()
     danceability_df = load_top_danceability_artists()
 
-    # Explicit vs Non-Explicit
-    st.subheader("Explicit vs Non-Explcit Tracks")
+    # Row 1
+    col1, col2 = st.columns(2)
 
-    fig, ax = plt.subplots()
-    ax.bar(explicit_df["explicit_label"], explicit_df["average_popularity"])
-    ax.set_xlabel("Track Type")
-    ax.set_ylabel("Average Popularity")
-    ax.set_title("Average Popularity of Explicit vs Non-Explicit Tracks")
-    plt.tight_layout()
-    st.pyplot(fig)
+    with col1:
+        # Explicit vs Non-Explicit
+        st.subheader("Explicit vs Non-Explicit Tracks")
 
-    st.write("Explicit tracks appear to have a higher average popularity than non-explicit tracks.")
+        fig, ax = plt.subplots()
+        ax.bar(explicit_df["explicit_label"], explicit_df["average_popularity"])
+        ax.set_xlabel("Track Type")
+        ax.set_ylabel("Average Popularity")
+        ax.set_title("Average Popularity of Explicit vs Non-Explicit Tracks")
+        plt.tight_layout()
+        st.pyplot(fig)
 
-    # Collaboration vs Solo
-    st.subheader("Collaborration vs Solo Tracks")
+        st.write(
+            "Explicit tracks appear to have a higher average popularity than non-explicit tracks."
+        )
+    with col2:
+        # Collaboration vs Solo
+        st.subheader("Collaboration vs Solo Tracks")
 
-    fig, ax = plt.subplots()
-    ax.bar(collaboration_df["collaboration_label"], collaboration_df["average_popularity"])
-    ax.set_xlabel("Track Type")
-    ax.set_ylabel("Average Popularity")
-    ax.set_title("Average Popularity of Collaboration vs Solo Tracks")
-    plt.tight_layout()
-    st.pyplot(fig)
+        fig, ax = plt.subplots()
+        ax.bar(collaboration_df["collaboration_label"], collaboration_df["average_popularity"])
+        ax.set_xlabel("Track Type")
+        ax.set_ylabel("Average Popularity")
+        ax.set_title("Average Popularity of Collaboration vs Solo Tracks")
+        plt.tight_layout()
+        st.pyplot(fig)
 
-    st.write("Collaborative tracks appear to perform better on average than solo tracks in this dataset.")
+        st.write(
+            "Collaborative tracks appear to perform better on average than solo tracks in this dataset."
+        )
+    # Row 2
+    col3, col4 = st.columns(2)
 
-    # Album vs Artist popularity
-    st.subheader("Album vs Artist Popularity")
+    with col3:
+        # Album vs Artist popularity
+        st.subheader("Album vs Artist Popularity")
 
-    fig, ax = plt.subplots()
-    ax.scatter(
-        album_artist_df["artist_popularity"], 
-        album_artist_df["album_popularity"], 
-        alpha=0.5
-    )
-    ax.set_xlabel("Artist Popularity")
-    ax.set_ylabel("Album Popularity")
-    ax.set_title("Relationship between Artist and Album Popularity")
-    plt.tight_layout()
-    st.pyplot(fig)
+        fig, ax = plt.subplots()
+        ax.scatter(
+            album_artist_df["artist_popularity"], 
+            album_artist_df["album_popularity"], 
+            alpha=0.5
+        )
+        ax.set_xlabel("Artist Popularity")
+        ax.set_ylabel("Album Popularity")
+        ax.set_title("Relationship between Artist and Album Popularity")
+        plt.tight_layout()
+        st.pyplot(fig)
 
-    st.write("This scatter plot suggests a positive relationship between artist popularity and album popularity.")
+        st.write(
+            "This scatter plot suggests a positive relationship between artist popularity and album popularity."
+        )
 
-    # Top danceability artists
-    st.subheader("Top Danceability Artists")
+    with col4:
+        # Top danceability artists
+        st.subheader("Top Danceability Artists")
 
-    fig, ax = plt.subplots()
-    ax.barh(danceability_df["artist_name"], danceability_df["number_of_top_tracks"])
-    ax.set_xlabel("Number of Top Tracks")
-    ax.set_ylabel("Artist")
-    ax.set_title("Artist Appearing Most in Top 10% Danceability Tracks")
-    plt.tight_layout()
-    st.pyplot(fig)
+        fig, ax = plt.subplots()
+        ax.barh(danceability_df["artist_name"], danceability_df["number_of_top_tracks"])
+        ax.set_xlabel("Number of Top Tracks")
+        ax.set_ylabel("Artist")
+        ax.set_title("Artists Appearing Most in Top 10% Danceability Tracks")
+        plt.tight_layout()
+        st.pyplot(fig)
 
-    st.write("These artists appear most often among the top 10% most danceable tracks.")
+        st.write(
+            "These artists appear most often among the top 10% most danceable tracks."
+        )
 
     # Feature over time
     st.subheader("Feature Trends Over Time")
@@ -237,7 +254,9 @@ elif page == "Insights":
     plt.tight_layout()
     st.pyplot(fig)
 
-    st.write(f"This chart shows how average {selected_feature} changes over time in the selected year range.")
+    st.write(
+        f"This chart shows how average {selected_feature} changes over time in the selected year range."
+    )
 
     # Feature by era
     st.subheader("Average Feature by Era")
