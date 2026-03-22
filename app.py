@@ -94,7 +94,7 @@ elif page == "Feature Analysis":
 elif page == "Genre Analysis":
     st.title("Genre Analysis")
 
-    genre_data = filtered_features.copy()
+    genre_data = filtered_features[filtered_features["genre"] == selected_genre]
 
     st.write(f"Showing results for genre: **{selected_genre}**")
 
@@ -102,18 +102,33 @@ elif page == "Genre Analysis":
         st.warning("No data available for this genre in the selected year range.")
     else:
         avg_value = genre_data[selected_feature].mean()
-        st.metric(f"Average {selected_feature}", round(avg_value, 3))
+        avg_popularity = genre_data["popularity"].mean()
 
-        fig, ax = plt.subplots()
-        top_genre_data = genre_data.sort_values(selected_feature, ascending=False).head(10)
+        col1, col2 = st.columns(2)
+        col1.metric(f"Average {selected_feature}", round(avg_value, 3))
+        col2.metric("Average popularity", round (avg_popularity, 2))
+
+        st.subheader(f"Top Artists in {selected_genre}")
+
+        top_genre_data = (
+            genre_data.groupby("artist_name")[[selected_feature, "popularity"]]
+            .mean()
+            .sort_values(selected_feature, ascending=False)
+            .head(10)
+            .reset_index()
+        )
+
+        fig, ax = plt.subplots(figsize=(10, 6))
         ax.bar(top_genre_data["artist_name"], top_genre_data[selected_feature])
         ax.set_xlabel("Artist")
         ax.set_ylabel(selected_feature)
+        ax.set_title(f"Top Artists in {selected_genre} by {selected_feature}")
         plt.xticks(rotation=45)
         st.pyplot(fig)
 
+        st.subheader("Tracks in Selected Genre")
         st.dataframe(
-            genre_data[["artist_name", selected_feature, "popularity", "explicit", "year"]]
+            genre_data[["artist_name", "genre", selected_feature, "popularity", "explicit", "year"]]
             .reset_index(drop=True)
             )
 
