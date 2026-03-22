@@ -76,6 +76,7 @@ if page == "Home":
     ax.set_ylabel("Popularity")
     ax.set_title("Top 10 Artists by Popularity")
     plt.xticks(rotation=45)
+    plt.tight_layout()
     st.pyplot(fig)
 
     st.subheader("Top Artists Overview")
@@ -93,6 +94,7 @@ elif page == "Feature Analysis":
     ax.hist(filtered_features[selected_feature], bins=10)
     ax.set_xlabel(selected_feature)
     ax.set_ylabel("Count")
+    plt.tight_layout()
     st.pyplot(fig)
 
     st.subheader("Filtered Tracks")
@@ -152,7 +154,16 @@ elif page == "Artist Search":
             st.warning("No artist found.")
         else:
             st.success(f"Found {len(result)} matching artist(s).")
-            st.dataframe(result)
+            st.write("## Details")
+            st.dataframe(
+                result[["artist_name", "popularity", "followers", "genre"]]
+                .rename(columns={
+                    "artist_name": "Artist Name",
+                    "popularity": "Popularity",
+                    "followers": "Followers",
+                    "genre": "Genre"
+                })
+            )
     else:
         st.info("Enter an artist name in the sidebar to search.")
 

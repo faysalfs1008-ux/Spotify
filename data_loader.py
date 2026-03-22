@@ -14,7 +14,8 @@ def get_artists_data():
     SELECT 
         name AS artist_name,
         artist_popularity AS popularity,
-        followers
+        followers,
+        genre_0 AS genre
     FROM artist_data
     """
 
