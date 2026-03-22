@@ -45,11 +45,13 @@ The dashboard includes the following pages:
 
 ## Project Structure
 
-- `app.py` – Streamlit dashboard application
-- `data_loader.py` – Data loading and processing functions
-- `spotify_database.db` – SQLite database
-- `.csv files` – Precomputed analysis results (Part 3)
-- `data_wrangling_part4.py` – Data cleaning and preparation
+The repository includes:
+
+- `app.py` – main streamlit dashboard application
+- `data_loader.py` – functions to load and process data
+- `spotify_database.db` – SQLite database containing spotify data
+- `.csv files` – results from analysis (Part 3)
+- `data_wrangling_part4.py` – data cleaning and preparation
 
 ---
 
