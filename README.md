@@ -43,6 +43,17 @@ The dashboard includes the following pages:
   
 ---
 
+## Data Processing and Analysis
+
+The project includes data analysis and preprocessing performed in earlier parts:
+
+- Part 3: SQL-based analysis exported to CSV files (used in Insights page)
+- Part 4: Data wrangling including cleaning, outlier detection, and time-based transformations
+
+These results are integrated into the dashboard for visualization.
+
+---
+
 ## Project Structure
 
 The repository includes:
