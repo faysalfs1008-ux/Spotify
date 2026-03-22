@@ -60,11 +60,12 @@ if page == "Home":
              "Use the sidebar to explore artist information, features, genres, and year-based trends.")
     
     st.subheader("General Statistics")
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
 
     col1.metric("Number of artists", artists_df["artist_name"].nunique())
     col2.metric("Average popularity", round(artists_df["popularity"].mean(), 2))
     col3.metric("Average followers", f"{int(artists_df['followers'].mean()):,}")
+    col4.metric("Total Tracks", len(features_df))
 
     st.subheader("Top Artists by Popularity")
     top_pop = artists_df.sort_values("popularity", ascending=False).head(10)
@@ -157,6 +158,7 @@ elif page == "Artist Search":
 
 elif page == "Insights":
     st.title("Analysis Insights")
+    st.write("This section highlights key findings from the data analysis.")
 
     explicit_df = load_explicit_popularity()
     collaboration_df =load_collaboration_popularity()
