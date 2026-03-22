@@ -78,15 +78,14 @@ The repository includes:
 
 ## Dataset
 
-The script uses the following datasets:
+The project uses a SQLite database (`spotify_database.db`) containing:
 
-- `artist_data.csv` – contains artist statistics, including:
-  - `name` – artist name  
-  - `artist_popularity` – popularity score (1–100)  
-  - `followers` – number of followers  
-  - `artist_genres`, `genre_1` … `genre_6` – artist genres  
+- Track-level data (popularity, explicit, duration)
+- Audio features (danceability, energy, tempo)
+- Artist data (popularity, followers, genres)
+- Album data (release dates)
 
-> Ensure the CSV is in the same folder as the script.
+Additional CSV files are generated from analysis and used in the Insights page.
 
 ---
 
