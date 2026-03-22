@@ -36,7 +36,8 @@ def get_features_data():
         f.danceability,
         f.energy,
         al.release_date,
-        ar.name AS artist_name
+        ar.name AS artist_name,
+        ar.genre_0 AS genre
     FROM tracks_data t
     JOIN features_data f
         ON t.id = f.id
@@ -48,23 +49,21 @@ def get_features_data():
 
     df = pd.read_sql_query(query, conn)
 
-    # Convert date → year (like Part 4)
     df["release_date"] = pd.to_datetime(df["release_date"], errors="coerce")
     df["year"] = df["release_date"].dt.year
-
-    # Remove missing years
     df = df.dropna(subset=["year"])
+
+    df["genre"] = df["genre"].fillna("Unkown")
 
     conn.close()
 
     return df
 
 
-# Feature + genre options
+# Feature
 def get_available_features(features_df):
     return ["danceability", "energy"]
 
-
+# Genre options
 def get_available_genres(features_df):
-    # Temporary placeholder until genres are integrated from Part 4
-    return ["pop", "hip hop", "latin", "r&b"]
+    return sorted(features_df["genre"].dropna().unique().tolist())
