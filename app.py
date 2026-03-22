@@ -185,10 +185,15 @@ elif page == "Insights":
     st.subheader("Album vs Artist Popularity")
 
     fig, ax = plt.subplots()
-    ax.bar(album_artist_df["artist_popularity"], album_artist_df["album_popularity"], alpha=0.5)
+    ax.scatter(
+        album_artist_df["artist_popularity"], 
+        album_artist_df["album_popularity"], 
+        alpha=0.5
+    )
     ax.set_xlabel("Artist Popularity")
     ax.set_ylabel("Album Popularity")
     ax.set_title("Relationship between Artist and Album Popularity")
+    plt.tight_layout()
     st.pyplot(fig)
 
     # Top danceability artists
