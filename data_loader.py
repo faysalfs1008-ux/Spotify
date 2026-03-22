@@ -68,6 +68,20 @@ def get_available_features(features_df):
 def get_available_genres(features_df):
     return sorted(features_df["genre"].dropna().unique().tolist())
 
+# Era feature
+def get_era_feature_data():
+    features_df = get_features_data().copy()
+
+    features_df["era"] = (features_df["year"] // 10) * 10
+
+    era_data = (
+        features_df.groupby("era")[["danceability", "energy"]]
+        .mean()
+        .reset_index()
+        .sort_values("era")
+    )
+    return era_data
+
 # Part 3 loaders
 
 def load_explicit_popularity() :

@@ -8,7 +8,8 @@ from data_loader import (
     load_explicit_popularity,
     load_collaboration_popularity,
     load_album_artist_popularity,
-    load_top_danceability_artists
+    load_top_danceability_artists,
+    get_era_feature_data
 )
 
 st.set_page_config(page_title="Spotify Dashboard", layout="wide")
@@ -237,3 +238,21 @@ elif page == "Insights":
     st.pyplot(fig)
 
     st.write(f"This chart shows how average {selected_feature} changes over time in the selected year range.")
+
+    # Feature by era
+    st.subheader("Average Feature by Era")
+
+    era_data = get_era_feature_data()
+
+    fig, ax = plt.subplots()
+    ax.bar(era_data["era"].astype(str), era_data[selected_feature])
+    ax.set_xlabel("Era")
+    ax.set_ylabel(f"Average {selected_feature}")
+    ax.set_title(f"Average {selected_feature.capitalize()} by Era")
+    ax.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+    st.pyplot(fig)
+
+    st.write(
+        f"This chart summarizes average {selected_feature} by decade, giving a broader view of how the feature changes across eras."
+        )
