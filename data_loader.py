@@ -53,7 +53,7 @@ def get_features_data():
     df["year"] = df["release_date"].dt.year
     df = df.dropna(subset=["year"])
 
-    df["genre"] = df["genre"].fillna("Unkown")
+    df["genre"] = df["genre"].fillna("Unknown")
 
     conn.close()
 
@@ -67,3 +67,29 @@ def get_available_features(features_df):
 # Genre options
 def get_available_genres(features_df):
     return sorted(features_df["genre"].dropna().unique().tolist())
+
+# Part 3 loaders
+
+def load_explicit_popularity() :
+    return pd.read_csv("explicit_popularity.csv")
+
+def load_collaboration_popularity() :
+    return pd.read_csv("collaboration_popularity.csv")
+
+def load_album_artist_popularity() :
+    return pd.read_csv("album_artist_popularity.csv")
+
+def load_top_danceability_artists() :
+    return pd.read_csv("top_danceability_artists.csv")
+
+def load_explicit_artist_ratio() :
+    return pd.read_csv("explicit_artist_ratio.csv")
+
+def load_duration_popularity() :
+    return pd.read_csv("duration_popularity.csv")
+
+def load_albums_with_era() :
+    return pd.read_csv("albums_with_era.csv")
+
+def load_album_features_analysis() :
+    return pd.read_csv("album_features_analysis.csv")
