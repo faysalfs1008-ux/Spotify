@@ -52,3 +52,4 @@ numpy==1.26.0
 matplotlib==3.8.0 
 statsmodels==0.17.0
 sqlite3==3.51.3
+seaborn==0.13.2
