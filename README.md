@@ -79,30 +79,6 @@ The script uses the following datasets:
 
 ---
 
-## Features
-
-1. **Basic Inspection**
-   - Prints column names and types
-   - Displays first 5 rows
-   - Counts unique artists
-   - Top 10 artists by popularity and number of genres (with bar charts)
-
-2. **Popularity vs Followers**
-   - Linear regression: `popularity ~ log(followers)`  
-   - Identifies top overperformers (high popularity, low followers)  
-   - Identifies top legacy artists (low popularity, high followers)  
-   - Scatter plot with regression line
-
-3. **Genre Analysis**
-   - Parses genres from the dataset  
-   - Function to show top 10 artists per genre (example: 'pop')  
-
-4. **Number of Genres vs Popularity/Followers**
-   - Scatter plot of number of genres vs popularity and followers  
-   - Histogram showing distribution of genres per artist
-
----
-
 ## Group Members
 
 - Marta Parada de Mingo – Dashboard development (Part 5)
