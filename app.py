@@ -205,3 +205,22 @@ elif page == "Insights":
     ax.set_ylabel("Artist")
     ax.set_title("Artist Appearing Most in Top 10% Danceability Tracks")
     st.pyplot(fig)
+
+    # Feature over time
+    st.subheader("Feature Trends Over Time")
+
+    trend_data = filtered_features.groupby("year").agg(
+        avg_value=(selected_feature, "mean"),
+        count=("id", "count")
+    ).reset_index()
+
+    trend_data = trend_data[trend_data["count"] >= 20]
+    
+    fig, ax = plt.subplots()
+    ax.plot(trend_data["year"], trend_data["avg_value"])
+    ax.set_xlabel("Year")
+    ax.set_ylabel(f"Average {selected_feature}")
+    ax.set_title(f"Average {selected_feature.capitalize()} Over Time")
+    ax.grid(alpha=0.3)
+    plt.tight_layout()
+    st.pyplot(fig)
