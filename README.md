@@ -117,3 +117,14 @@ matplotlib==3.8.0
 statsmodels==0.17.0
 sqlite3==3.51.3
 seaborn==0.13.2
+
+---
+
+## Key Insights
+
+- Explicit tracks tend to have higher average popularity
+- Collaborative tracks perform better than solo tracks
+- Artist popularity is positively correlated with album popularity
+- Danceability has increased over time
+
+---
