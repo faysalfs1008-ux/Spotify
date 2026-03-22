@@ -1,6 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-from data_loader_marta import (
+from data_loader import (
     get_artists_data,
     get_features_data,
     get_available_features,
@@ -51,25 +51,32 @@ filtered_features = features_df[
 
 if page == "Home":
     st.title("Spotify Data Dashboard")
-    st.write("This dashboard explores artist and track statistics from the Spotify dataset.")
-
+    st.write("This dashboard provides an overview of Spotify artist and track statistics. "
+             "Use the sidebar to explore artist information, features, genres, and year-based trends.")
+    
+    st.subheader("General Statistics")
     col1, col2, col3 = st.columns(3)
+
     col1.metric("Number of artists", artists_df["artist_name"].nunique())
     col2.metric("Average popularity", round(artists_df["popularity"].mean(), 2))
-    col3.metric("Average followers", round(artists_df["followers"].mean(), 2))
+    col3.metric("Average followers", f"{int(artists_df['followers'].mean()):,}")
 
     st.subheader("Top Artists by Popularity")
-    top_pop = artists_df.sort_values("popularity", ascending=False)
+    top_pop = artists_df.sort_values("popularity", ascending=False).head(10)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 6))
     ax.bar(top_pop["artist_name"], top_pop["popularity"])
     ax.set_xlabel("Artist")
     ax.set_ylabel("Popularity")
+    ax.set_title("Top 10 Artists by Popularity")
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
-    st.subheader("Dataset Preview")
-    st.dataframe(artists_df)
+    st.subheader("Top Artists Overview")
+    st.dataframe(
+        top_pop[["artist_name", "popularity", "followers"]]
+        .reset_index(drop=True)
+    )
 
 elif page == "Feature Analysis":
     st.title("Feature Analysis")
@@ -82,12 +89,12 @@ elif page == "Feature Analysis":
     st.pyplot(fig)
 
     st.subheader("Filtered Tracks")
-    st.dataframe(filtered_features[["track_name", "artist_name", selected_feature, "genre", "year"]])
+    st.dataframe(filtered_features[["artist_name", selected_feature, "popularity", "explicit", "year"]])
 
 elif page == "Genre Analysis":
     st.title("Genre Analysis")
 
-    genre_data = filtered_features[filtered_features["genre"] == selected_genre]
+    genre_data = filtered_features.copy()
 
     st.write(f"Showing results for genre: **{selected_genre}**")
 
@@ -98,13 +105,17 @@ elif page == "Genre Analysis":
         st.metric(f"Average {selected_feature}", round(avg_value, 3))
 
         fig, ax = plt.subplots()
-        ax.bar(genre_data["track_name"], genre_data[selected_feature])
-        ax.set_xlabel("Track")
+        top_genre_data = genre_data.sort_values(selected_feature, ascending=False).head(10)
+        ax.bar(top_genre_data["artist_name"], top_genre_data[selected_feature])
+        ax.set_xlabel("Artist")
         ax.set_ylabel(selected_feature)
         plt.xticks(rotation=45)
         st.pyplot(fig)
 
-        st.dataframe(genre_data)
+        st.dataframe(
+            genre_data[["artist_name", selected_feature, "popularity", "explicit", "year"]]
+            .reset_index(drop=True)
+            )
 
 elif page == "Artist Search":
     st.title("Artist Search")
