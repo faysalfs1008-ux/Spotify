@@ -72,8 +72,8 @@ The repository includes:
 pip install streamlit pandas matplotlib seaborn
 
 2.	Make sure the following files are in the project folder:
-	•	spotify_database.db
-	•	all CSV files used in the Insights page
+- spotify_database.db
+- all CSV files used in the Insights page
 
 3.	Run the dashboard:
 streamlit run app.py
