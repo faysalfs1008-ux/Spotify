@@ -12,6 +12,36 @@ This project analyzes Spotify data and presents insights through an interactive 
 - Build an interactive dashboard to present findings
 
 ---
+
+## Dashboard Features
+
+The dashboard includes the following pages:
+
+- **Home**
+  - General statistics (number of artists, average popularity, followers)
+  - Top artists visualization
+
+- **Feature Analysis**
+  - Distribution of selected features (danceability, energy)
+  - Summary statistics
+
+- **Genre Analysis**
+  - Feature and popularity analysis by genre
+  - Top artists within selected genre
+
+- **Artist Search**
+  - Search for artists by name
+  - Displays popularity, followers, and genre
+
+- **Insights**
+  - Explicit vs non-explicit track popularity
+  - Collaboration vs solo tracks
+  - Artist vs album popularity relationship
+  - Top danceability artists
+  - Feature trends over time
+  - Feature comparison by era
+  
+---
 ## Contributors 
 - Marta Parada de Mingo
 
