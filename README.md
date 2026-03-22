@@ -1,6 +1,6 @@
 # Spotify Data Analysis & Dashboard
 
-This repository contains a Python script (`full_artist_analysis.py`) for exploring and analyzing Spotify artist data. The script performs statistical analyses, identifies trends, and generates visualizations.
+This project analyzes Spotify data and presents insights through an interactive dashboard built using Streamlit. The dashboard allows users to explore artist statistics, track features, genre trends, and data-driven insights.
 
 ---
 ## Contributors 
