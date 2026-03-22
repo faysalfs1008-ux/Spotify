@@ -68,11 +68,17 @@ The repository includes:
 
 ## How to Run
 
-1. Install required packages:
-   pip install streamlit pandas matplotlib seaborn sqlite3
+1. Install the required packages:
+pip install streamlit pandas matplotlib seaborn
 
-2. Run the dashboard:
-   streamlit run app.py
+2.	Make sure the following files are in the project folder:
+	•	spotify_database.db
+	•	all CSV files used in the Insights page
+
+3.	Run the dashboard:
+streamlit run app.py
+
+4. The dashboard will open in your browser 
 
 ---
 
